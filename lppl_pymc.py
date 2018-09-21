@@ -83,7 +83,7 @@ if __name__ == '__main__':
 #    C = pm.Normal('C', mu=0.0, tau=C_tau)
 #    t = pm.HalfNormal('t', tau=t_tau)
 
-    @pm.deterministic
+    @pm.Deterministic
     def y_mu(o=o, m=m, A=A, C=C, t=t):
         ret = A + t**m * xd**m + C * t**m * xd**m * np.cos(o * np.log(xd))
 
@@ -94,7 +94,7 @@ if __name__ == '__main__':
 
     model = pm.Model([y_obs, y_mu, y_sd, t, C, A, m, o])
 
-    mcmc = pm.MCMC(model)
+    mcmc = pm.MCMC(model)   # MCMC not in pymc3. Use NUTS or HamiltonianMC
     mcmc.sample(iter=200000, burn=10000, thin=10)
 
     osamp = mcmc.trace('o')[:]
