@@ -13,7 +13,7 @@
     * Sensitive to prior distribution and hyperparameters for:
       o, m, A, C, tau
 '''
-import pymc as pm
+import pymc3 as pm
 import numpy as np
 import scipy.stats as scs
 import matplotlib.pyplot as plt
